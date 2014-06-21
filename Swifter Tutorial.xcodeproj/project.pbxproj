@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6F2573F1195556B70021BD56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2573F0195556B70021BD56 /* AppDelegate.swift */; };
-		6F2573F3195556B70021BD56 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2573F2195556B70021BD56 /* AuthViewController.swift */; };
+		6F2573F3195556B70021BD56 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2573F2195556B70021BD56 /* AuthView.swift */; };
 		6F257404195556B70021BD56 /* Swifter_TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F257403195556B70021BD56 /* Swifter_TutorialTests.swift */; };
 		6F25749519555A2E0021BD56 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F25748E195559B90021BD56 /* SwifteriOS.framework */; };
 		6F25749719555CD60021BD56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F25749619555CD60021BD56 /* Images.xcassets */; };
 		6F4F70E719555F0200D224DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4F70E619555F0200D224DD /* Main.storyboard */; };
 		6F4F70E819555F0200D224DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4F70E619555F0200D224DD /* Main.storyboard */; };
+		6FD0F634195571D2001AC4DD /* RecentTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD0F633195571D2001AC4DD /* RecentTweets.swift */; };
+		6FD0F635195571D2001AC4DD /* RecentTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD0F633195571D2001AC4DD /* RecentTweets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,13 +67,14 @@
 		6F2573EB195556B70021BD56 /* Swifter Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swifter Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F2573EF195556B70021BD56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F2573F0195556B70021BD56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6F2573F2195556B70021BD56 /* AuthViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		6F2573F2195556B70021BD56 /* AuthView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		6F2573FD195556B70021BD56 /* Swifter TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swifter TutorialTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F257402195556B70021BD56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F257403195556B70021BD56 /* Swifter_TutorialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifter_TutorialTests.swift; sourceTree = "<group>"; };
 		6F257483195559B90021BD56 /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = ../../swifter/Swifter.xcodeproj; sourceTree = "<group>"; };
 		6F25749619555CD60021BD56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6F4F70E619555F0200D224DD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6FD0F633195571D2001AC4DD /* RecentTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTweets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +118,8 @@
 		6F2573ED195556B70021BD56 /* Swifter Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				6FD0F66819557472001AC4DD /* Controllers */,
 				6F2573F0195556B70021BD56 /* AppDelegate.swift */,
-				6F2573F2195556B70021BD56 /* AuthViewController.swift */,
 				6F4F70E619555F0200D224DD /* Main.storyboard */,
 				6F25749619555CD60021BD56 /* Images.xcassets */,
 				6F2573EE195556B70021BD56 /* Supporting Files */,
@@ -159,6 +162,15 @@
 				6F257494195559B90021BD56 /* SwifterDemoMacTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6FD0F66819557472001AC4DD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6F2573F2195556B70021BD56 /* AuthView.swift */,
+				6FD0F633195571D2001AC4DD /* RecentTweets.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,8 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F2573F3195556B70021BD56 /* AuthViewController.swift in Sources */,
+				6F2573F3195556B70021BD56 /* AuthView.swift in Sources */,
 				6F2573F1195556B70021BD56 /* AppDelegate.swift in Sources */,
+				6FD0F634195571D2001AC4DD /* RecentTweets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FD0F635195571D2001AC4DD /* RecentTweets.swift in Sources */,
 				6F257404195556B70021BD56 /* Swifter_TutorialTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

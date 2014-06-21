@@ -3,7 +3,7 @@ import Accounts
 import Social
 import SwifteriOS
 
-class AuthViewController: UIViewController
+class AuthView: UIViewController
 {
   let useACAccount = true
   
@@ -106,9 +106,20 @@ class AuthViewController: UIViewController
       includeEntities: true,
       success: {
         statuses, response in
-        println(statuses)
+        
+//        [
+//          .DescriptiveCell(title: "No Data", description: "No data could be fetched", url: "http://github.com/")
+//        ]
+        
+        println(statuses[0])
+
+        
+        let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
+        recentTweets.recentTweets = statuses as NSArray
+        self.presentViewController(recentTweets, animated: true, completion: nil)
       },
       failure: failureHandler
     )
+    
   }
 }

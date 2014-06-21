@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--Auth View Controller-->
+        <!--Auth View-->
         <scene sceneID="DDj-JH-UoW">
             <objects>
-                <viewController id="hVp-wC-ZGs" customClass="AuthViewController" customModule="Swifter_Tutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hVp-wC-ZGs" customClass="AuthView" customModule="Swifter_Tutorial" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="utr-qu-ieQ"/>
                         <viewControllerLayoutGuide type="bottom" id="mnl-yE-msX"/>
@@ -32,6 +32,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdL-ES-p0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="252" y="350"/>
+        </scene>
+        <!--Recent Tweets-->
+        <scene sceneID="lBx-pN-Q7m">
+            <objects>
+                <viewController storyboardIdentifier="RecentTweets" id="apv-f1-fQc" customClass="RecentTweets" customModule="Swifter_Tutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WNS-O2-lWi"/>
+                        <viewControllerLayoutGuide type="bottom" id="dhn-QV-JCS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mGz-dW-CHC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView appearanceType="aqua" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iE6-FT-SWk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="apv-f1-fQc" id="fzd-PW-CiF"/>
+                                    <outlet property="delegate" destination="apv-f1-fQc" id="tR9-fk-Bjh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="iE6-FT-SWk" id="pho-gV-e3b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdh-c4-gDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="589" y="350"/>
         </scene>
     </scenes>
     <resources>
