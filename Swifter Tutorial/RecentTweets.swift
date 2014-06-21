@@ -54,9 +54,10 @@ class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
     let data = recentTweets[indexPath.row] as? Dictionary<String, AnyObject>
     let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
     
-    println(data)
+    var test = data!["text"]
     
-    
+
+    cell.textLabel.text = data!["text"]? as String
 //    switch(data) {
 //    case .DescriptiveCell(var title, var description, _):
 //      cell.textLabel.text = title
