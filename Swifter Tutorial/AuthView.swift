@@ -107,13 +107,6 @@ class AuthView: UIViewController
       success: {
         statuses, response in
         
-//        [
-//          .DescriptiveCell(title: "No Data", description: "No data could be fetched", url: "http://github.com/")
-//        ]
-        
-        println(statuses[0])
-
-        
         let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
         recentTweets.recentTweets = statuses as NSArray
         self.presentViewController(recentTweets, animated: true, completion: nil)
