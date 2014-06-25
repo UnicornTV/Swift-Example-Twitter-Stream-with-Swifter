@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Swift Tutorial for UITableViews and Swifter by swiftcast</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Swift Tutorial for UITableViews and Swifter</h1>
+        <p>Build a Simple Twitter iOS Application with Swifter</p>
+
+        <p class="view"><a href="https://github.com/swiftcast/Swift-UITableView-with-Swifter-Example">View the Project on GitHub <small>swiftcast/Swift-UITableView-with-Swifter-Example</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/swiftcast/Swift-UITableView-with-Swifter-Example/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/swiftcast/Swift-UITableView-with-Swifter-Example/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/swiftcast/Swift-UITableView-with-Swifter-Example">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>It's only been a couple weeks, and already developers are diving in and creating cool things with Swift. We're really excited to be using Swift ourselves, and we've been working hard to build applications that showcase some of the new functionality and paradigms that the swift language brings to the app world.</p>
+
+<p>Our first swift tutorial will be focused on using the Swifter framework to connect to twitter and authorize a user in iOS and then display the latest tweets in a UITableView. If you're not already familiar with the latest apple releases, there are <a href="https://developer.apple.com/swift/">many</a> <a href="http://www.learnswift.tips/">great</a> <a href="https://www.youtube.com/user/nkhan6/videos">resources</a> for learning xcode 6 and the swift language. We're going to start off these posts assuming you know your way around, but even if you don't know swift or xcode 6, you will get enough of a primer from our tutorial that you should be able to build this app from scratch or  <a href="https://github.com/swiftcast/Swift-UITableView-with-Swifter-Example">download the source</a> and understand it.</p>
+
+<h2>
+<a name="create-a-new-ios-project-in-xcode-6" class="anchor" href="#create-a-new-ios-project-in-xcode-6"><span class="octicon octicon-link"></span></a>Create a new iOS Project in Xcode 6</h2>
+
+<div>
+    We have some prerequisites for this application. We will be building with Xcode 6 and building for iOS 8 in simulator. This should be zero configuration if you've downloaded the beta or newer of xcode from the apple developer center.
+</div>
+
+<p>Select the "Single View Application" under the iOS &gt; Application menu on the left side of the window.</p>
+
+<p><img src="http://i.cubeupload.com/P7Z8We.png" alt="image"></p>
+
+<p>Fill in your app details, we're choosing to name our app "Swifter Auth Example" and to keep things simple, we're going to build for iPhone. You will obviously want to choose swift as your language.</p>
+
+<p><img src="http://i.cubeupload.com/q9P90Q.png" alt="image"></p>
+
+<h2>
+<a name="add-the-swifter-framework-to-your-application" class="anchor" href="#add-the-swifter-framework-to-your-application"><span class="octicon octicon-link"></span></a>Add the Swifter Framework to your Application</h2>
+
+<p>To use the Swifter framework in our application, we need to <a href="https://github.com/mattdonnelly/Swifter">download the Swifter  source</a> and drag the xcode project into our own.</p>
+
+<p><img src="http://i.cubeupload.com/cbscEp.png" alt="image"></p>
+
+<p>Select your main (parent) xcode project and on the settings page scroll near the bottom and click + under "Linked Frameworks and Libraries." You should see <code>SwifteriOS.framework</code> listed at the top of the modal window, which we can select and add.</p>
+
+<p><img src="http://i.cubeupload.com/gYI27N.png" alt="image"></p>
+
+<p>Status should be set to <code>Required</code> for this framework. While we're on this page, lets lock down our device orientation to portrait, and make sure the deployment target is set to iOS 8.</p>
+
+<p><img src="http://i.cubeupload.com/2glDCW.png" alt="image"></p>
+
+<h2>
+<a name="create-storyboards-views-and-use-autolayout" class="anchor" href="#create-storyboards-views-and-use-autolayout"><span class="octicon octicon-link"></span></a>Create Storyboards Views and use Autolayout</h2>
+
+<p>Since we're mainly focused on creating for the iPhone, let's target the portrait mode by selecting compact width and regular height from our autolayout target guide.</p>
+
+<p><img src="http://i.cubeupload.com/0OJFfP.png" alt="image"></p>
+
+<p>Next we'll want to add some image assets to our project. We will add the image source for a twitter button we will create on our main Storyboard view.</p>
+
+<p><img src="http://i.cubeupload.com/pIWGG5.png" alt="image"></p>
+
+<p>Now that we have the image for our button, let's go add an actual button component to our view. Clear out the default text and set the image field to your twitter button.</p>
+
+<p><img src="http://i.cubeupload.com/roQZhA.png" alt="image"></p>
+
+<p>Your button should default to the width of the image and you can drag the image to center it on the page. You can also do this with autolayout constraints by selecting the button and selecting the alignment constraints menu and selecting to center horizontally/vertically in container.</p>
+
+<p><img src="http://i.cubeupload.com/0mbggL.png" alt="image"></p>
+
+<p>Lets now create a custom action for when this button is pressed. Select the assistant editor (tux button in the top right) and ctrl+drag the button onto your ViewController.swift file.</p>
+
+<p><img src="http://i.cubeupload.com/0jsNmj.png" alt="image"></p>
+
+<p>Make sure to select the action in the connection menu. We will call ours <code>doTwitterLogin</code></p>
+
+<p><img src="http://i.cubeupload.com/PqPdvJ.png" alt="image"></p>
+
+<p>Lastly, we added a second view controller with a table view dropped in. To keep things organized, we created a <code>Controllers</code> group in the project, renamed our <code>ViewController.swift</code> to <code>AuthView.swift</code> and dropped it into the controllers group. You should then, also make an additional Swift controller (you can clone the original) and assign each of your two views from the story board to the AuthView and RecentTweets view respectively.</p>
+
+<p><img src="http://i.cubeupload.com/cq0fVv.png" alt="image"></p>
+
+<h2>
+<a name="done-with-storyboards-time-for-swift-code" class="anchor" href="#done-with-storyboards-time-for-swift-code"><span class="octicon octicon-link"></span></a>Done with Storyboards, time for Swift Code!</h2>
+
+<p>Rather than fragmenting code with no context of where those snippets really belong, we like to keep our controllers light enough and well commented so you can simply read the code and hopefully understand what is going on.</p>
+
+<h3>
+<a name="authviewswift" class="anchor" href="#authviewswift"><span class="octicon octicon-link"></span></a>AuthView.swift</h3>
+
+<pre><code>// We need to import our frameworks used here
+// UIKit is our base for interacting with nibs, storyboards, and the app as a whole
+// The Accounts framework gives us access to accounts authed in the phone's settings
+// The Social framework allows us to interact with twitter in a limited way
+// The SwifteriOS framework gives us more granular control for dealing with twitter
+import UIKit
+import Accounts
+import Social
+import SwifteriOS
+
+// our AuthView is assigned to the first UIViewController in the Main.storyboard
+class AuthView: UIViewController
+{
+  // Default to using the iOS account framework for handling twitter auth
+  let useACAccount = true
+
+  // Our custom button action
+  @IBAction func doTwitterLogin(sender : AnyObject)
+  {
+    // All errors should be caught and alert the user with user friendly text
+    let failureHandler: ((NSError) -&gt; Void) = {
+      error in
+
+      self.alert(error.localizedDescription)
+    }
+
+    // Use the accounts already stored in the phone's settings?
+    if useACAccount
+    {
+      let accountStore = ACAccountStore()
+      let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+
+      // Prompt the user for permission to their twitter account stored in the phone's settings
+      accountStore.requestAccessToAccountsWithType(accountType) {
+        granted, error in
+
+        if granted
+        {
+          let twitterAccounts = accountStore.accountsWithAccountType(accountType)
+
+          // We're thinking, why can't this be more dry? This is the only control flow where we beg for more
+          // Would love to check: if twitterAccounts &amp;&amp; twitterAccounts.count &gt; 0
+          if twitterAccounts
+          {
+            if twitterAccounts.count == 0
+            {
+              self.alert("There are no Twitter accounts configured. You can add or create a Twitter account in Settings.")
+            }
+            else
+            {
+              let twitterAccount = twitterAccounts[0] as ACAccount
+              let swifter = Swifter(account: twitterAccount)
+              self.fetchTwitterHomeStream(swifter)
+            }
+          }
+          else {
+            self.alert("There are no Twitter accounts configured. You can add or create a Twitter account in Settings.")
+          }
+        }
+      }
+    }
+    // Let's do it the more typical way, by instantiating Swifter with our custom app credentials
+    else
+    {
+      let swifter = Swifter(
+        consumerKey: "RErEmzj7ijDkJr60ayE2gjSHT",
+        consumerSecret: "SbS0CHk11oJdALARa7NDik0nty4pXvAxdt7aj0R5y1gNzWaNEx"
+      )
+
+      swifter.authorizeWithCallbackURL(
+        NSURL(string: "swifter://success"),
+        success: {
+          accessToken, response in
+
+          self.alert("Successfully authorized with App API")
+          self.fetchTwitterHomeStream(swifter)
+        },
+        failure: failureHandler
+      )
+    }
+  }
+
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+  }
+
+  override func didReceiveMemoryWarning()
+  {
+    super.didReceiveMemoryWarning()
+  }
+
+  // Keeping things DRY by creating a simple alert method that we can reuse for generic errors
+  func alert(message: String)
+  {
+    // This is the iOS8 way of doing alerts. For older versions, look into UIAlertView
+    var alert = UIAlertController(
+      title: nil,
+      message: message,
+      preferredStyle: UIAlertControllerStyle.Alert
+    )
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
+  }
+
+  // More DRY code, fetch the users home timeline if all went well
+  func fetchTwitterHomeStream(swifter: Swifter)
+  {
+    let failureHandler: ((NSError) -&gt; Void) = {
+      error in
+      self.alert(error.localizedDescription)
+    }
+
+    swifter.getStatusesHomeTimelineWithCount(
+      20,
+      sinceID: nil,
+      maxID: nil,
+      trimUser: true,
+      contributorDetails: false,
+      includeEntities: true,
+      success: {
+        statuses, response in
+
+        // We loaded the stream just fine, so lets create and push the table view
+        let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
+        recentTweets.recentTweets = statuses as NSArray
+        self.presentViewController(recentTweets, animated: true, completion: nil)
+      },
+      failure: failureHandler
+    )
+
+  }
+}
+</code></pre>
+
+<h3>
+<a name="recenttweetsswift" class="anchor" href="#recenttweetsswift"><span class="octicon octicon-link"></span></a>RecentTweets.swift</h3>
+
+<pre><code>import UIKit
+
+// RecentTweets inherits from UIViewController and implements the UITableViewDelegate and UITableViewDataSource protocols
+class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
+{
+  // Q: Why NSArray vs the new array syntax?
+  // A: Most of us are former Objc devs, and sometimes it helps mentally to be more explicit
+  var recentTweets : NSArray = []
+
+  // You ctrl+dragged this outlet in from your storyboard right?
+  @IBOutlet var tableView : UITableView
+
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+  }
+
+  override func didReceiveMemoryWarning()
+  {
+    super.didReceiveMemoryWarning()
+  }
+
+  // As defined in the protocol, we need to provide the number of rows in this table
+  func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&gt; Int
+  {
+    return recentTweets.count
+  }
+
+  // Another protocol method, allowing us to control the data created in each cell
+  // Note that UITableView has a ! at the end
+  func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&gt; UITableViewCell!
+  {
+    // Grab the data in the recentTweets array based on the index of the cell
+    // Tell the program what type of data it is so that we can drill into this generic object
+    let data = recentTweets[indexPath.row] as? Dictionary&lt;String, AnyObject&gt;
+    let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
+
+    cell.textLabel.text = data!["text"]? as String
+
+    return cell
+  }
+}
+</code></pre>
+
+<h2>
+<a name="build-your-ios-twitter-app" class="anchor" href="#build-your-ios-twitter-app"><span class="octicon octicon-link"></span></a>Build your iOS Twitter App!</h2>
+
+<ul>
+<li>Does it run?</li>
+<li>Did you run into problems?</li>
+<li>What modifications have you tried?</li>
+<li>See any typos in our code or comments?</li>
+<li>Anything you need more clarification on?</li>
+</ul><p>Let us know in the comments! We hope that you built your first Swifter based app with success, and look forward to your feedback!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/swiftcast">swiftcast</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("51691217");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
