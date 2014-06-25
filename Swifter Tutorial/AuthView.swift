@@ -1,25 +1,36 @@
+// We need to import our frameworks used here
+// UIKit is our base for interacting with nibs, storyboards, and the app as a whole
+// The Accounts framework gives us access to accounts authed in the phone's settings
+// The Social framework allows us to interact with twitter in a limited way
+// The SwifteriOS framework gives us more granular control for dealing with twitter
 import UIKit
 import Accounts
 import Social
 import SwifteriOS
 
+// our AuthView is assigned to the first UIViewController in the Main.storyboard
 class AuthView: UIViewController
 {
+  // Default to using the iOS account framework for handling twitter auth
   let useACAccount = true
   
+  // Our custom button action
   @IBAction func doTwitterLogin(sender : AnyObject)
   {
+    // All errors should be caught and alert the user with user friendly text
     let failureHandler: ((NSError) -> Void) = {
       error in
       
       self.alert(error.localizedDescription)
     }
     
+    // Use the accounts already stored in the phone's settings?
     if useACAccount
     {
       let accountStore = ACAccountStore()
       let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
       
+      // Prompt the user for permission to their twitter account stored in the phone's settings
       accountStore.requestAccessToAccountsWithType(accountType) {
         granted, error in
         
@@ -27,6 +38,8 @@ class AuthView: UIViewController
         {
           let twitterAccounts = accountStore.accountsWithAccountType(accountType)
           
+          // We're thinking, why can't this be more dry? This is the only control flow where we beg for more
+          // Would love to check: if twitterAccounts && twitterAccounts.count > 0
           if twitterAccounts
           {
             if twitterAccounts.count == 0
@@ -46,6 +59,7 @@ class AuthView: UIViewController
         }
       }
     }
+    // Let's do it the more typical way, by instantiating Swifter with our custom app credentials
     else
     {
       let swifter = Swifter(
@@ -62,7 +76,7 @@ class AuthView: UIViewController
           self.fetchTwitterHomeStream(swifter)
         },
         failure: failureHandler
-      ) // switfer.authorizeWithCallbackURL
+      )
     }
   }
   
@@ -85,7 +99,7 @@ class AuthView: UIViewController
       message: message,
       preferredStyle: UIAlertControllerStyle.Alert
     )
-    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+    alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
     self.presentViewController(alert, animated: true, completion: nil)
   }
   
@@ -107,6 +121,7 @@ class AuthView: UIViewController
       success: {
         statuses, response in
         
+        // We loaded the stream just fine, so lets create and push the table view
         let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
         recentTweets.recentTweets = statuses as NSArray
         self.presentViewController(recentTweets, animated: true, completion: nil)
