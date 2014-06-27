@@ -1,10 +1,11 @@
 import UIKit
+import SwifteriOS
 
 // RecentTweets inherits from UIViewController and implements the UITableViewDelegate and UITableViewDataSource protocols
 class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
   // Not sure if this should be cast as JSONValue or what now?!
-  var stream : NSArray = []
+  var stream : JSONValue[] = []
   
   // You ctrl+dragged this outlet in from your storyboard right?
   @IBOutlet var tableView : UITableView
@@ -34,7 +35,7 @@ class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
     // Tell the program what type of data it is so that we can drill into this generic object
     let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
     
-    cell.textLabel.text = stream[indexPath.row].string
+    cell.textLabel.text = stream[indexPath.row]["text"].string
     
     return cell
   }

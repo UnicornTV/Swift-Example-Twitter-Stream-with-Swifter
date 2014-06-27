@@ -126,11 +126,9 @@ class AuthView: UIViewController
         
         if statuses
         {
-          println(statuses![0]["text"].string)
-          println(statuses!.count)
-          
-          // This doesnt currently work. Statuses is enumerable, so not sure why I can't type cast to NSArray
-          recentTweets.stream = statuses! as NSArray
+          // We have a statuses enumerable now
+          // lets assign it to our RecentTweets class and present the view
+          recentTweets.stream = statuses!
           self.presentViewController(recentTweets, animated: true, completion: nil)
         }
       },
