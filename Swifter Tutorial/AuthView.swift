@@ -120,18 +120,18 @@ class AuthView: UIViewController
       includeEntities: true,
       success: {
         (statuses: JSONValue[]?) in
-      
-        println(statuses)
         
         // We loaded the stream just fine, so lets create and push the table view
         let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
         
         if statuses
         {
-          // This used to work, uncomment to get errors :)
-//        recentTweets.stream = statuses! as NSArray
-        
-//        self.presentViewController(recentTweets, animated: true, completion: nil)
+          println(statuses![0]["text"].string)
+          println(statuses!.count)
+          
+          // This doesnt currently work. Statuses is enumerable, so not sure why I can't type cast to NSArray
+          recentTweets.stream = statuses! as NSArray
+          self.presentViewController(recentTweets, animated: true, completion: nil)
         }
       },
       failure: failureHandler

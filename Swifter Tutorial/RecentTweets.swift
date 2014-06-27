@@ -3,7 +3,7 @@ import UIKit
 // RecentTweets inherits from UIViewController and implements the UITableViewDelegate and UITableViewDataSource protocols
 class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-  // Not sure if this should be cast as JSON or what now?!
+  // Not sure if this should be cast as JSONValue or what now?!
   var stream : NSArray = []
   
   // You ctrl+dragged this outlet in from your storyboard right?
