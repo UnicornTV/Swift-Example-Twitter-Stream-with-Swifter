@@ -119,12 +119,20 @@ class AuthView: UIViewController
       contributorDetails: false,
       includeEntities: true,
       success: {
-        statuses, response in
+        (statuses: JSONValue[]?) in
+      
+        println(statuses)
         
         // We loaded the stream just fine, so lets create and push the table view
         let recentTweets = self.storyboard.instantiateViewControllerWithIdentifier("RecentTweets") as RecentTweets
-        recentTweets.recentTweets = statuses as NSArray
-        self.presentViewController(recentTweets, animated: true, completion: nil)
+        
+        if statuses
+        {
+          // This used to work, uncomment to get errors :)
+//        recentTweets.stream = statuses! as NSArray
+        
+//        self.presentViewController(recentTweets, animated: true, completion: nil)
+        }
       },
       failure: failureHandler
     )
