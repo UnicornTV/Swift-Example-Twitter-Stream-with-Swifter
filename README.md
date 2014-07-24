@@ -1,4 +1,4 @@
-Swift-UITableView-with-Swifter-Example
+Swift Example: UITableView with Swifter
 ======================================
 
 Read the accompanying blog post:
