@@ -1,18 +1,15 @@
 import UIKit
 import SwifteriOS
 
-// RecentTweets inherits from UIViewController and implements the UITableViewDelegate and UITableViewDataSource protocols
-class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
-{
-  // Not sure if this should be cast as JSONValue or what now?!
-  var stream : JSONValue[] = []
+class TweetsViewController: UITableViewController {
   
-  // You ctrl+dragged this outlet in from your storyboard right?
-  @IBOutlet var tableView : UITableView
+  var tweets : [JSONValue] = []
   
-  override func viewDidLoad()
+  override func viewWillLayoutSubviews()
   {
-    super.viewDidLoad()
+    super.viewWillLayoutSubviews()
+    self.tableView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0)
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0)
   }
   
   override func didReceiveMemoryWarning()
@@ -20,23 +17,16 @@ class RecentTweets: UIViewController, UITableViewDelegate, UITableViewDataSource
     super.didReceiveMemoryWarning()
   }
   
-  // As defined in the protocol, we need to provide the number of rows in this table
-  func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
-  {
-    // If stream is JSON type, i lose the ability to count items
-    return stream.count
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return tweets.count
   }
   
-  // Another protocol method, allowing us to control the data created in each cell
-  // Note that UITableView has a ! at the end
-  func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
-  {
-    // Grab the data in the recentTweets array based on the index of the cell
-    // Tell the program what type of data it is so that we can drill into this generic object
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
     
-    cell.textLabel.text = stream[indexPath.row]["text"].string
+    cell.textLabel.text = tweets[indexPath.row]["text"].string
     
     return cell
   }
+  
 }

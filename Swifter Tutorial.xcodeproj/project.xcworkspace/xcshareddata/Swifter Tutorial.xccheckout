@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0EF88EA3-0174-4983-B567-FC40EB3B8AAE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Swifter Tutorial</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>29425873F6A1C5CA163EC72608998D8B5F5ECA3D</key>
+		<string>github.com:SwiftCast/Swift-Example-Twitter-Stream-with-Swifter.git</string>
+		<key>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</key>
+		<string>https://github.com/mattdonnelly/Swifter.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Swifter Tutorial.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>29425873F6A1C5CA163EC72608998D8B5F5ECA3D</key>
+		<string>../..</string>
+		<key>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</key>
+		<string>../../../Swifter</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:SwiftCast/Swift-Example-Twitter-Stream-with-Swifter.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>29425873F6A1C5CA163EC72608998D8B5F5ECA3D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>29425873F6A1C5CA163EC72608998D8B5F5ECA3D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Swift-Example-Twitter-Stream-with-Swifter</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Swifter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
