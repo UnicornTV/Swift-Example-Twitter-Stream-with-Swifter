@@ -4,5 +4,5 @@ Build a simple twitter application that leverages the Swifter library (also buil
 
 ## Read the accompanying blog post:
 
-- [English](http://www.swiftcast.tv/articles/build-a-simple-twitter-ios-app-with-swift)
+- [English](https://swiftcast.tv/articles/introduction-to-swifter)
 - [Español](http://es.swiftcast.tv/articles/introduccion-a-swifter)
